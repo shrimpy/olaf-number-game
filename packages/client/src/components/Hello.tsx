@@ -7,13 +7,13 @@ const imgs = [
     "./olaf1.jpeg",
     "./olaf2.jpeg",
     "./olaf3.jpeg",
-    // "./olaf4.jpg",
-    // "./olaf5.jpg",
-    // "./olaf6.png",
-    // "./olaf7.jpeg",
-    // "./olaf8.jpeg",
-    // "./olaf9.webp",
-    // "./olaf10.png",
+    "./olaf4.jpg",
+    "./olaf5.jpg",
+    "./olaf6.png",
+    "./olaf7.jpeg",
+    "./olaf8.jpeg",
+    "./olaf9.webp",
+    "./olaf10.png",
 ];
 
 export const OlafNumberGameApp = () => {
