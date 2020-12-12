@@ -79,7 +79,7 @@ export const OlafNumberGameApp = () => {
         setShowHelp(false);
     }, [num1, num2, result, newCal, setResultCans]);
 
-    const onHelp = useCallback(() => setShowHelp(true), [setShowHelp]);
+    const onHelp = useCallback(() => setShowHelp(!showHelp), [showHelp, setShowHelp]);
     const onReset = useCallback(() => {
         newCal();
         setResult(0);
