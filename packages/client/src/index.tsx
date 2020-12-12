@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Hello } from "./components/Hello";
+import { OlafNumberGameApp } from "./components/Hello";
 
 ReactDOM.render(
-    <Hello compiler="TypeScript" framework="React" />,
+    <OlafNumberGameApp />,
     document.getElementById("root")
 );
