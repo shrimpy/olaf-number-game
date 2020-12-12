@@ -120,6 +120,43 @@ module.exports = {
                 to: path.resolve(paths.distFolder, "favicon.ico")
             },
             {
+                from: path.resolve(paths.assetsFolder, "olaf2.jpeg"),
+                to: path.resolve(paths.distFolder, "olaf2.jpeg")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "olaf3.jpeg"),
+                to: path.resolve(paths.distFolder, "olaf3.jpeg")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "olaf4.jpg"),
+                to: path.resolve(paths.distFolder, "olaf4.jpg")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "olaf5.jpg"),
+                to: path.resolve(paths.distFolder, "olaf5.jpg")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "olaf6.png"),
+                to: path.resolve(paths.distFolder, "olaf6.png")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "olaf7.jpeg"),
+                to: path.resolve(paths.distFolder, "olaf7.jpeg")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "olaf8.jpeg"),
+                to: path.resolve(paths.distFolder, "olaf8.jpeg")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "olaf9.webp"),
+                to: path.resolve(paths.distFolder, "olaf9.webp")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "olaf10.png"),
+                to: path.resolve(paths.distFolder, "olaf10.png")
+            },
+            {
+
                 from: path.resolve(paths.assetsFolder, "manifest.json"),
                 to: path.resolve(paths.distFolder, "manifest.json")
             }
