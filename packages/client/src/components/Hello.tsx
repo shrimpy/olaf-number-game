@@ -1,4 +1,5 @@
 import React, { SyntheticEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { HelpButton } from "./HelpButton";
 
 export interface HelloProps { }
 
@@ -90,18 +91,20 @@ export const OlafNumberGameApp = () => {
         }
 
         const he = [];
-        if (op === "+") {
-            for (let i = 0; i < num1; i++) {
-                he.push(<span style={{ margin: "10px", fontSize: "30px", color: "purple" }}>O</span>);
-            }
-            he.push(<span style={{ margin: "10px", fontSize: "30px" }}>{op}</span>);
-            for (let i = 0; i < num2; i++) {
-                he.push(<span style={{ margin: "10px", fontSize: "30px", color: "blue" }}>O</span>);
-            }
-        } else {
-            for (let i = 0; i < num1; i++) {
-                he.push(<span style={{ margin: "10px", fontSize: "30px", color: "purple", backgroundColor: (i < num2 ? "gray" : "") }}>O</span>);
-            }
+        for (let i = 0; i < num1; i++) {
+            he.push(<HelpButton value="☺" />);
+        }
+        if (num1 === 0) {
+            he.push(<span style={{ margin: "10px", fontSize: "30px" }}>Nothing</span>);
+        }
+
+        he.push(<span style={{ margin: "10px", fontSize: "30px" }}>{op}</span>);
+        for (let i = 0; i < num2; i++) {
+            he.push(<HelpButton value="☺" />);
+        }
+
+        if (num2 === 0) {
+            he.push(<span style={{ margin: "10px", fontSize: "30px" }}>Nothing</span>);
         }
 
         return he;
