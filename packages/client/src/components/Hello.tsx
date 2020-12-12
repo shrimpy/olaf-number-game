@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { SyntheticEvent, useCallback, useEffect, useMemo, useState } from "react";
 
 export interface HelloProps { }
 
@@ -18,8 +18,8 @@ const imgs = [
 export const OlafNumberGameApp = () => {
     const [num1, setNum1] = useState<number>(0);
     const [num2, setNum2] = useState<number>(0);
-    const [num, setNum] = useState<number>(0);
     const [op, setOp] = useState("+");
+    const [resultCans, setResultCans] = useState<number[]>([]);
     const [result, setResult] = useState(0);
     const [showHelp, setShowHelp] = useState(false);
 
@@ -27,27 +27,47 @@ export const OlafNumberGameApp = () => {
     const newCal = useCallback(() => {
         const n1 = Math.floor(Math.random() * 10);
         const n2 = Math.floor(Math.random() * 10);
+        let r = 0;
         if (n1 >= n2) {
             setNum1(n1);
             setNum2(n2);
             setOp("+");
+            r = n1 + n2;
         } else {
             setNum1(n2);
             setNum2(n1);
             setOp("-");
+            r = n2 - n1;
         }
 
-        setNum(0);
-    }, [setNum, setNum1, setNum2, setOp,]);
+        const rcs = [];
+        let added = false;
+        for (let i = 0; i < 3; i++) {
+            const rand = Math.ceil(Math.random() * 10);
+            rcs.push(r + rand);
+
+            if (!added && rand % 2 === 0) {
+                rcs.push(r);
+            }
+        }
+
+        if (rcs.length < 4 && rcs.indexOf(r) === -1) {
+            rcs.push(r);
+        }
+
+        setResultCans(rcs);
+    }, [setNum1, setNum2, setOp,]);
 
     useEffect(() => newCal(), [newCal]);
 
-    const onTest = useCallback(() => {
-        let actual = 0;
-        if (op === "+") actual = num1 + num2
-        else actual = num1 - num2
+    const onTest = useCallback((e: SyntheticEvent<HTMLButtonElement>) => {
+        let expect = 0;
+        if (op === "+") expect = num1 + num2
+        else expect = num1 - num2
 
-        if (actual === num) {
+        const actual = parseInt(e.currentTarget.dataset.result!);
+
+        if (expect === actual) {
             setResult(result + 1);
             newCal();
         } else {
@@ -55,7 +75,7 @@ export const OlafNumberGameApp = () => {
         }
 
         setShowHelp(false);
-    }, [num1, num2, num, result, newCal]);
+    }, [num1, num2, result, newCal, setResultCans]);
 
     const onHelp = useCallback(() => setShowHelp(true), [setShowHelp]);
 
@@ -112,12 +132,10 @@ export const OlafNumberGameApp = () => {
                     {num2}
                 </span>
                 <span style={{ color: "blue", paddingRight: "10px" }}>=</span>
-                <input
-                    value={num}
-                    onChange={e => setNum(parseInt(e.currentTarget.value) || 0)}
-                    style={{ margin: "10px", width: "100px", height: "50px" }}
-                />
-                <button onClick={onTest} style={{ width: "200px", height: "55px", marginLeft: "50px" }}>Test</button>
+                {
+                    resultCans.map(val =>
+                        <button onClick={onTest} data-result={val} style={{ width: "50px", height: "55px", marginLeft: "10px" }}>{val}</button>)
+                }
                 <button onClick={onHelp} style={{ width: "200px", height: "55px", marginLeft: "50px" }}>Help</button>
             </h1>
             {HelpContent}
