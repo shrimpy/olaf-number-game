@@ -120,6 +120,10 @@ module.exports = {
                 to: path.resolve(paths.distFolder, "favicon.ico")
             },
             {
+                from: path.resolve(paths.assetsFolder, "olaf1.jpeg"),
+                to: path.resolve(paths.distFolder, "olaf1.jpeg")
+            },
+            {
                 from: path.resolve(paths.assetsFolder, "olaf2.jpeg"),
                 to: path.resolve(paths.distFolder, "olaf2.jpeg")
             },
