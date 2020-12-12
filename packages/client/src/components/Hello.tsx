@@ -48,6 +48,7 @@ export const OlafNumberGameApp = () => {
 
             if (!added && rand % 2 === 0) {
                 rcs.push(r);
+                added = true;
             }
         }
 
@@ -78,6 +79,10 @@ export const OlafNumberGameApp = () => {
     }, [num1, num2, result, newCal, setResultCans]);
 
     const onHelp = useCallback(() => setShowHelp(true), [setShowHelp]);
+    const onReset = useCallback(() => {
+        newCal();
+        setResult(0);
+    }, [newCal, setResult]);
 
     const HelpContent: any = useMemo(() => {
         if (!showHelp) {
@@ -121,24 +126,27 @@ export const OlafNumberGameApp = () => {
                     }
                 })}
                 {result === 0 && <h2>Want to see a snow man?</h2>}
-                {result >= imgs.length && <h2>Well done!</h2>}
+                {result >= imgs.length && <div><button onClick={onReset}><h2>Well Done! Let's do it again</h2></button></div>}
             </div>
-            <h1 style={{ margin: "30px" }}>
-                <span style={{ margin: "10px" }}>
-                    {num1}
-                </span>
-                <span style={{ color: "brown", paddingRight: "10px" }}>{op}</span>
-                <span style={{ margin: "10px" }}>
-                    {num2}
-                </span>
-                <span style={{ color: "blue", paddingRight: "10px" }}>=</span>
-                {
-                    resultCans.map(val =>
-                        <button onClick={onTest} data-result={val} style={{ width: "50px", height: "55px", marginLeft: "10px" }}>{val}</button>)
-                }
-                <button onClick={onHelp} style={{ width: "200px", height: "55px", marginLeft: "50px" }}>Help</button>
-            </h1>
-            {HelpContent}
+            {result < imgs.length &&
+                <div>
+                    <h1 style={{ margin: "30px" }}>
+                        <span style={{ margin: "10px" }}>
+                            {num1}
+                        </span>
+                        <span style={{ color: "brown", paddingRight: "10px" }}>{op}</span>
+                        <span style={{ margin: "10px" }}>
+                            {num2}
+                        </span>
+                        <span style={{ color: "blue", paddingRight: "10px" }}>=</span>
+                        {
+                            resultCans.map(val =>
+                                <button onClick={onTest} data-result={val} style={{ width: "50px", height: "55px", marginLeft: "10px" }}>{val}</button>)
+                        }
+                        <button onClick={onHelp} style={{ width: "200px", height: "55px", marginLeft: "50px" }}>Help</button>
+                    </h1>
+                    {HelpContent}
+                </div>}
         </>
     );
 };
