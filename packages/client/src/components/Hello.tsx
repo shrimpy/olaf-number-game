@@ -7,13 +7,13 @@ const imgs = [
     "./olaf1.jpeg",
     "./olaf2.jpeg",
     "./olaf3.jpeg",
-    "./olaf4.jpg",
-    "./olaf5.jpg",
-    "./olaf6.png",
-    "./olaf7.jpeg",
-    "./olaf8.jpeg",
-    "./olaf9.webp",
-    "./olaf10.png",
+    // "./olaf4.jpg",
+    // "./olaf5.jpg",
+    // "./olaf6.png",
+    // "./olaf7.jpeg",
+    // "./olaf8.jpeg",
+    // "./olaf9.webp",
+    // "./olaf10.png",
 ];
 
 export const OlafNumberGameApp = () => {
@@ -128,8 +128,8 @@ export const OlafNumberGameApp = () => {
                         return <img src={val} width="200px" />;
                     }
                 })}
-                {result === 0 && <h2>Want to see a snow man?</h2>}
-                {result >= imgs.length && <div><button onClick={onReset}><h2>Well Done! Let's do it again</h2></button></div>}
+                {result === 0 && <h2>Want to see a snowman?</h2>}
+                {result >= imgs.length && <div><button style={{ height: "55px", marginLeft: "50px", fontSize: "30px" }} onClick={onReset}>Well Done! Let's do it again!</button></div>}
             </div>
             {result < imgs.length &&
                 <div>
