@@ -124,7 +124,7 @@ export const OlafNumberGameApp = () => {
                         <span style={{ color: "blue", paddingRight: "10px" }}>=</span>
                         {
                             resultCans.map(val =>
-                                <button onClick={onTest} data-result={val} style={{ width: "50px", height: "55px", marginLeft: "10px" }}>{val}</button>)
+                                <button onClick={onTest} data-result={val} style={{ width: "50px", height: "55px", marginLeft: "10px", fontSize: "30px" }}>{val}</button>)
                         }
                         <button onClick={onHelp} style={{ width: "200px", height: "55px", marginLeft: "50px" }}>Help</button>
                     </h1>
