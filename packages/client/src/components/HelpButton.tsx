@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
 
-export interface HelloProps {
+export interface HelpButtonProps {
     value: string;
 }
 
-export const HelpButton = ({ value }: HelloProps) => {
+export const HelpButton = ({ value }: HelpButtonProps) => {
     const [isClick, setIsClick] = useState(false);
     const onClick = useCallback(() => {
         setIsClick(!isClick);

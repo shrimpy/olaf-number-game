@@ -1,7 +1,5 @@
-import React, { SyntheticEvent, useCallback, useEffect, useMemo, useState } from "react";
-import { HelpButton } from "./HelpButton";
-
-export interface HelloProps { }
+import React, { SyntheticEvent, useCallback, useEffect, useState } from "react";
+import { HelpContent } from "./HelpContent";
 
 const imgs = [
     "./olaf1.jpeg",
@@ -42,21 +40,14 @@ export const OlafNumberGameApp = () => {
         }
 
         const rcs = [];
-        let added = false;
         for (let i = 0; i < 3; i++) {
-            const rand = Math.ceil(Math.random() * 10);
-            rcs.push(r + rand);
-
-            if (!added && rand % 2 === 0) {
-                rcs.push(r);
-                added = true;
-            }
+            rcs.push(r + Math.ceil(Math.random() * 10));
         }
-
-        if (rcs.length < 4 && rcs.indexOf(r) === -1) {
+        if (rcs.indexOf(r) === -1) {
             rcs.push(r);
         }
 
+        shuffleArray(rcs);
         setResultCans(rcs);
     }, [setNum1, setNum2, setOp,]);
 
@@ -84,32 +75,6 @@ export const OlafNumberGameApp = () => {
         newCal();
         setResult(0);
     }, [newCal, setResult]);
-
-    const HelpContent: any = useMemo(() => {
-        if (!showHelp) {
-            return null;
-        }
-
-        const he = [];
-        for (let i = 0; i < num1; i++) {
-            he.push(<HelpButton value="☺" />);
-        }
-        if (num1 === 0) {
-            he.push(<span style={{ margin: "10px", fontSize: "30px" }}>Nothing</span>);
-        }
-
-        he.push(<span style={{ margin: "10px", fontSize: "30px" }}>{op}</span>);
-        for (let i = 0; i < num2; i++) {
-            he.push(<HelpButton value="☺" />);
-        }
-
-        if (num2 === 0) {
-            he.push(<span style={{ margin: "10px", fontSize: "30px" }}>Nothing</span>);
-        }
-
-        return he;
-
-    }, [showHelp, num1, num2, op]);
 
     return (
         <>
@@ -148,8 +113,19 @@ export const OlafNumberGameApp = () => {
                         }
                         <button onClick={onHelp} style={{ width: "200px", height: "55px", marginLeft: "50px" }}>Help</button>
                     </h1>
-                    {HelpContent}
+                    {showHelp && <HelpContent left={num1} op={op} right={num2} />}
                 </div>}
         </>
     );
 };
+
+const shuffleArray = (a: any[]) => {
+    let j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
