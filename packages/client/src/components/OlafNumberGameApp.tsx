@@ -105,7 +105,7 @@ export const OlafNumberGameApp = () => {
             <div>
                 {imgs.map((val, idx) => {
                     if (idx < result) {
-                        return <img src={val} width="200px" />;
+                        return <img src={val} style={{ maxWidth: "200px", maxHeight: "200px" }} />;
                     }
                 })}
                 {result === 0 && <h2>Want to see a snowman?</h2>}
