@@ -12,6 +12,9 @@ const createPart = (num: number): any[] => {
     for (let i = 0; i < num; i++) {
         parts.push(<HelpButton value="☺" />);
     }
+    if (num === 0) {
+        parts.push(<span style={{ fontSize: "50px" }}>Nothing</span>);
+    }
     return parts;
 };
 
@@ -22,7 +25,7 @@ export const HelpContent = ({ left, op, right }: HelpContentProps) => {
     return (
         <div style={{ display: "flex", flexDirection: "row" }}>
             <div>{leftPart}</div>
-            <div style={{ color: "brown", padding: "10px", fontSize: "50px" }}>{op}</div>
+            <div style={{ color: "brown", padding: "0 10px 20px 10px", fontSize: "50px" }}>{op}</div>
             <div>{rightPart}</div>
         </div>
     );
