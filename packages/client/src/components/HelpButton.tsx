@@ -10,5 +10,5 @@ export const HelpButton = ({ value }: HelpButtonProps) => {
         setIsClick(!isClick);
     }, [isClick, setIsClick]);
 
-    return <button onClick={onClick} style={{ fontSize: "30px", width: "60px", height: "60px", marginLeft: "10px", backgroundColor: isClick ? "gray" : "lightgreen" }}>{value}</button>
+    return <button onClick={onClick} style={{ fontSize: "30px", width: "60px", height: "60px", margin: "5px", backgroundColor: isClick ? "gray" : "lightgreen" }}>{value}</button>
 };

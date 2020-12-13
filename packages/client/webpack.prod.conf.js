@@ -116,6 +116,18 @@ module.exports = {
         }),
         new CopyPlugin([
             {
+                from: path.resolve(paths.assetsFolder, "i-am-wonderful.mp3"),
+                to: path.resolve(paths.distFolder, "i-am-wonderful.mp3")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "i-love-it-even-more.mp3"),
+                to: path.resolve(paths.distFolder, "i-love-it-even-more.mp3")
+            },
+            {
+                from: path.resolve(paths.assetsFolder, "nope.mp3"),
+                to: path.resolve(paths.distFolder, "nope.mp3")
+            },
+            {
                 from: path.resolve(paths.assetsFolder, "favicon.ico"),
                 to: path.resolve(paths.distFolder, "favicon.ico")
             },

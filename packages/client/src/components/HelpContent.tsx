@@ -24,9 +24,9 @@ export const HelpContent = ({ left, op, right }: HelpContentProps) => {
 
     return (
         <div style={{ display: "flex", flexDirection: "row" }}>
-            <div>{leftPart}</div>
+            <div style={{ border: "thin solid #32a1ce" }}>{leftPart}</div>
             <div style={{ color: "brown", padding: "0 10px 20px 10px", fontSize: "50px" }}>{op}</div>
-            <div>{rightPart}</div>
+            <div style={{ border: "thin solid #32a1ce" }}>{rightPart}</div>
         </div>
     );
 };
