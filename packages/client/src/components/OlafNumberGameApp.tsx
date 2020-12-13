@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useCallback, useEffect, useState } from "react";
+import React, { SyntheticEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { HelpContent } from "./HelpContent";
 
 const imgs = [
@@ -21,7 +21,15 @@ export const OlafNumberGameApp = () => {
     const [resultCans, setResultCans] = useState<number[]>([]);
     const [result, setResult] = useState(0);
     const [showHelp, setShowHelp] = useState(false);
+    const goodAudio1 = useMemo(() => new Audio("./i-am-wonderful.mp3"), []);
+    const goodAudio2 = useMemo(() => new Audio("./i-love-it-even-more.mp3"), []);
+    const badAudio = useMemo(() => new Audio("./nope.mp3"), []);
 
+    useEffect(() => {
+        goodAudio1.load();
+        goodAudio2.load();
+        badAudio.load();
+    }, []);
 
     const newCal = useCallback(() => {
         const n1 = Math.floor(Math.random() * 10);
@@ -61,14 +69,21 @@ export const OlafNumberGameApp = () => {
         const actual = parseInt(e.currentTarget.dataset.result!);
 
         if (expect === actual) {
+            const rand = Math.floor(Math.random() * 10);
+            if (rand % 2 === 0) {
+                goodAudio1.play();
+            } else {
+                goodAudio2.play();
+            }
             setResult(result + 1);
             newCal();
         } else {
+            badAudio.play();
             setResult(result === 0 ? 0 : result - 1);
         }
 
         setShowHelp(false);
-    }, [num1, num2, result, newCal, setResultCans]);
+    }, [num1, num2, result, newCal, setResultCans, goodAudio1, goodAudio2, badAudio]);
 
     const onHelp = useCallback(() => setShowHelp(!showHelp), [showHelp, setShowHelp]);
     const onReset = useCallback(() => {
